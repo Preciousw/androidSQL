@@ -39,19 +39,26 @@ class MainActivity : AppCompatActivity() {
 
         //setOnClickListeners to the buttons
         save.setOnClickListener {
-            var name_edt = name.text.toString().trim()
-            var email_edt = email.text.toString().trim()
-            var idnum_edt = id.text.toString().trim()
+            //Receive data from the user
+            var name_edt = name.text.toString()
+            var email_edt = email.text.toString()
+            var idnum_edt = id.text.toString()
 
-            //VALIDATE USER INPUT
-            if (name_edt.isEmpty() || email_edt.isEmpty() || idnum_edt.isEmpty())
+            //VALIDATE USER INPUT(check if the user is trying to submit empty records)
+            if (name_edt.isEmpty() or  email_edt.isEmpty() or  idnum_edt.isEmpty())  {
+
+
                 Toast.makeText(this, "Check your input field", Toast.LENGTH_SHORT).show()
-        } else{
-
-            db.execSQL("INSERT INTO users VALUES ('"')" )
 
 
+            }   else {
 
+
+                db.execSQL("INSERT INTO users VALUES('"+name_edt+"','"+email_edt+"','"+idnum_edt+"')")
+
+                Toast.makeText(this, "DATA SAVED SUCCESSFULLY", Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 
